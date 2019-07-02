@@ -1,3 +1,5 @@
+#pip install couchdb
+#pip install tweepy
 
 import couchdb #Libreria de CouchDB (requiere ser instalada primero)
 from tweepy import Stream #tweepy es la libreria que trae tweets desde la API de Twitter (requiere ser instalada primero)
@@ -6,13 +8,10 @@ from tweepy.streaming import StreamListener
 import json #Libreria para manejar archivos JSON
 
 
-###Credenciales de la cuenta de Twitter########################
-#Poner aqui las credenciales de su cuenta privada, caso contrario la API bloqueara esta cuenta de ejemplo
 ckey = "7S1GtIcHDgb7sHKPI9UbToNee"
 csecret = "DiWXkdOs8McEUBXqzduyxLKGDI1dlxkV7plx3PhaSGkCEMsbGc"
 atoken = "1342889774-uTgjppSYGraFFnMCN0hSGDXudVokTjGPv1Rtbdc"
 asecret = "9ZtEetYdwhHb7qPY2ynylMKoMrs0bxRDlHuvkhMvqjb3Z"
-#####################################
 
 class listener(StreamListener):
     
@@ -20,8 +19,7 @@ class listener(StreamListener):
         dictTweet = json.loads(data)
         try:
             dictTweet["_id"] = str(dictTweet['id'])
-            #Antes de guardar el documento puedes realizar parseo, limpieza y cierto analisis o filtrado de datos previo
-            #a guardar en documento en la base de datos
+           
             doc = db.save(dictTweet) #Aqui se guarda el tweet en la base de couchDB
             print ("Guardado " + "=> " + dictTweet["_id"])
         except:
@@ -40,11 +38,11 @@ twitterStream = Stream(auth, listener())
 server = couchdb.Server('http://localhost:5984/')
 try:
     #Si no existe la Base de datos la crea
-    db = server.create('quito')
+    db = server.create('geografico')
 except:
     #Caso contrario solo conectarse a la base existente
-    db = server['quito']
+    db = server['geografico']
     
 #Aqui se define el bounding box con los limites geograficos donde recolectar los tweets
-twitterStream.filter(track=["espeu","yosoyespe","comunidadespe","nosqlespe","bigdata-ec"])
-#twitterStream.filter(locations=[-78.586922,-0.395161,-78.274155,0.021973])
+twitterStream.filter(locations=[-74.1058040766,40.6300348044,-73.9082243672,40.7793526798])
+#twitterStream.filter(track = ["ecuador", "temblor", "alcaldequito", "tragedia","terremoto"])
