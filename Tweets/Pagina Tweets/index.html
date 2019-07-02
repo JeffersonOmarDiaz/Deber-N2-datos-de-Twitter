@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+      <script src="https://www.google.com/jsapi"></script>
+    
+      <script>
+
+          var public_key = 'dZ4EVmE8yGCRGx5XRX1W';
+    
+          var jsonData = $.ajax({
+            url: 'http://localhost:5984/geografico/_all_docs/?limit=100&include_docs=true',
+            //url: 'http://127.0.0.1:5984/test/_all_docs?include_docs=true&conflicts=true',
+            data: {page: 1},
+            dataType: 'json',
+          }).done(function (results) {
+    
+    
+         var count=results.total_rows;
+           
+    
+            for(var i=0;i<count; i++){
+              
+              var user=results.rows[i].doc.user.screen_name;
+              var name=results.rows[i].doc.user.name;
+    
+              var texttweet=results.rows[i].doc.text;
+              var fecha=results.rows[i].doc.created_at;
+              var foto=results.rows[i].doc.user.profile_image_url_https;
+              var gps=results.rows[i].doc.user.geo_enabled;
+              var fondo=results.rows[i].doc.user.profile_background_image_url_https;
+              var otros=results.rows[i].doc.user.friends_count;
+    
+    
+        console.log(user);
+        console.log(texttweet);
+        
+        document.getElementById("tweet").innerHTML += "<tr>"+
+                                                          "<td><img src="+foto+"></td>"+
+                                                          "<td>"+user+"<br>"+name+"</td>"+
+                                                          "<td background="+fondo+">"+texttweet+"</td>"+
+                                                          "<td>"+fecha+"</td>"+
+                                                          "<td>"+otros+"</td>"+
+                                                          
+                                                      "</tr>";      
+          }
+        });
+    
+      </script>
+
+  <meta charset="utf-8">
+  <title>Bell Bootstrap 4 Theme</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Facebook Opengraph integration: https://developers.facebook.com/docs/sharing/opengraph -->
+  <meta property="og:title" content="">
+  <meta property="og:image" content="">
+  <meta property="og:url" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:description" content="">
+
+  <!-- Twitter Cards integration: https://dev.twitter.com/cards/  -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="">
+  <meta name="twitter:title" content="">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="">
+
+  <!-- Favicon -->
+  <link href="img/favicon.ico" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,700|Roboto:400,900" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+    Theme Name: Bell
+    Theme URL: https://bootstrapmade.com/bell-free-bootstrap-4-template/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+</head>
+
+<body>
+  <!-- Page Content
+    ================================================== -->
+  <!-- Hero -->
+
+  <section class="hero">
+    <div class="container text-center">
+      <div class="col-md-12">
+        <h1>
+            BASE DE  DATOS MULTIDIMENSIONALES
+          </h1>
+
+        <p class="tagline">
+          La presente página muestra los resultados obtenidos de los tweest.
+          Los tweets han sido recolectados mediante hashtag y mediante 
+          ubicación geográfica.
+        </p>
+        <a class="btn btn-full" href="#about">Esta tarea ha sido realizada por Omar Díaz</a>
+      </div>
+    </div>
+
+  </section>
+  <!-- /Hero -->
+
+  <!-- Header -->
+  <header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <a href="index.html"><img src="img/logo.svg" alt="" title="" /></img></a>
+        <!-- Uncomment below if you prefer to use a text image -->
+        <!--<h1><a href="#hero">Bell</a></h1>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li><a href="#about">Explicación</a></li>
+          <li><a href="hashtag.html">Hashtag</a></li>
+          <li><a href="#portfolio">Geográfico</a></li>
+      </nav>
+      <!-- #nav-menu-container -->
+
+    </div>
+  </header>
+  <!-- #header -->
+
+  <!-- About -->
+
+  <section class="about" id="about">
+    <div class="container text-center">
+      <h2>
+          EXPLICACIÓN
+        </h2>
+
+      <p>
+        El deber consiste en reunir Información de tweets elegidos por el estudiante.
+        Por otra parte tambien se debe recalcar tweets de forma geográfica.
+        Además, se debe presentar los resultados obtenidos de manera visual en una pagina web.
+      </p>
+
+      <div class="row stats-row">
+        <div class="stats-col text-center col-md-3 col-sm-6">
+          <div class="circle">
+            <span class="stats-no" data-toggle="counter-up">8</span> Horas invertidas
+          </div>
+        </div>
+
+        <div class="stats-col text-center col-md-3 col-sm-6">
+          <div class="circle">
+            <span class="stats-no" data-toggle="counter-up">1</span> Personas que intervinieron
+          </div>
+        </div>
+
+        <div class="stats-col text-center col-md-3 col-sm-6">
+          <div class="circle">
+            <span class="stats-no" data-toggle="counter-up">820</span> Documentos captados en 4 horas
+          </div>
+        </div>
+
+        <div class="stats-col text-center col-md-3 col-sm-6">
+          <div class="circle">
+            <span class="stats-no" data-toggle="counter-up">2</span> MB totales
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /About -->
+  <!-- Parallax -->
+
+
+  <!-- /Parallax -->
+  <!-- Features -->
+
+
+  <!-- /Features -->
+  <!-- Call to Action -->
+
+  <!-- /Call to Action -->
+
+  <section class="portfolio" id="portfolio">
+    <div class="container text-center">
+      <h2>
+          Tweets Geográfico
+        </h2>
+
+      <p>
+        En esta sección se meuestran los tweets obtenidos de forma geográfica
+      </p>
+    </div>
+    
+
+<div class="container">
+  <table class="table table-bordered" > 
+  <thead>
+        <tr>
+          <th>Foto</th> 
+          <th>Usuario</th>
+          <th>Tweet</th>
+          <th>Fecha</th>
+          <th>Conteo de seguidores</th>
+          
+        </tr>
+      <tbody id="tweet">  
+      </tbody>
+    </table>
+  </div>
+
+  </section>
+
+  <!-- Portfolio -->
+
+
+  <!-- @component: footer -->
+  <footer class="site-footer">
+    <div class="bottom">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-6 col-xs-12 text-lg-left text-center">
+            <p class="copyright-text">
+              © POLI DESIGNE
+            </p>
+            
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </footer>
+  <a class="scrolltop" href="#"><span class="fa fa-angle-up"></span></a>
+
+
+  <!-- Required JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/jquery/jquery-migrate.min.js"></script>
+  <script src="lib/superfish/hoverIntent.js"></script>
+  <script src="lib/superfish/superfish.min.js"></script>
+  <script src="lib/tether/js/tether.min.js"></script>
+  <script src="lib/stellar/stellar.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/counterup/counterup.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/easing/easing.js"></script>
+  <script src="lib/stickyjs/sticky.js"></script>
+  <script src="lib/parallax/parallax.js"></script>
+  <script src="lib/lockfixed/lockfixed.min.js"></script>
+
+  <!-- Template Specisifc Custom Javascript File -->
+  <script src="js/custom.js"></script>
+
+  <script src="contactform/contactform.js"></script>
+
+</body>
+</html>
